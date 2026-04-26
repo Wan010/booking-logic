@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Home Massage in Badlapur | At-Home Spa Service</title>
+
+<meta name="description" content="Book home massage service in Badlapur, Kalyan, Ambernath. Certified therapists at your doorstep. Pay after service.">
+<meta name="keywords" content="home massage Badlapur, massage near me, spa at home Kalyan, deep tissue Ambernath">
+
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond&family=DM+Sans&display=swap" rel="stylesheet">
+
+<style>
+body{font-family:'DM Sans',sans-serif;margin:0;background:#F7F3EE;color:#2E2A26}
+section{padding:60px 5%}
+h1,h2{font-family:'Cormorant Garamond',serif}
+.btn{background:#5C7A5E;color:#fff;padding:14px 28px;border-radius:40px;text-decoration:none;display:inline-block}
+.btn:hover{opacity:.9}
+.center{text-align:center}
+.card{background:#fff;padding:20px;border-radius:16px;margin:10px 0}
+</style>
+</head>
+
+<body>
+
+<!-- HERO -->
+<section class="center">
+<h1>Your <em>spa</em> comes home</h1>
+
+<p>Professional massage therapy in Badlapur, Kalyan & nearby areas.</p>
+
+<p>
+✔ 500+ Happy Clients  
+✔ Verified Therapists  
+✔ Pay After Service  
+</p>
+
+<p style="color:#C4856A;font-weight:bold">
+🔥 Only 6 slots left today
+</p>
+
+<p style="font-size:1.2rem;font-weight:bold">
+🎁 First Session ₹999 Only
+</p>
+
+<a href="#booking" class="btn">Book Now</a>
+</section>
+
+<!-- SERVICES -->
+<section>
+<h2 class="center">Our Services</h2>
+
+<div class="card">Full Body Massage — ₹1299</div>
+<div class="card">Deep Tissue — ₹1499</div>
+<div class="card">Aromatherapy — ₹1599</div>
+<div class="card">Stress Relief — ₹799</div>
+
+</section>
+
+<!-- BOOKING -->
+<section id="booking">
+<h2 class="center">Book Your Session</h2>
+
+<div class="card">
+
+<input id="name" placeholder="Your Name" style="width:100%;margin:10px 0;padding:10px">
+<input id="phone" placeholder="Phone Number" style="width:100%;margin:10px 0;padding:10px">
+
+<select id="service" style="width:100%;margin:10px 0;padding:10px">
+<option value="">Select Service</option>
+<option>Full Body Massage</option>
+<option>Deep Tissue</option>
+<option>Aromatherapy</option>
+<option>Stress Relief</option>
+</select>
+
+<input id="date" type="date" style="width:100%;margin:10px 0;padding:10px">
+
+<input id="address" placeholder="Your Address" style="width:100%;margin:10px 0;padding:10px">
+
+<button onclick="book()" class="btn" style="width:100%">Confirm Booking</button>
+
+</div>
+</section>
+
+<!-- CONTACT -->
+<section class="center">
+<h2>Contact</h2>
+<p>📞 +91 98765 43210</p>
+<a class="btn" href="https://wa.me/919876543210">Chat on WhatsApp</a>
+</section>
+
+<script>
+function book(){
+let name=document.getElementById("name").value;
+let phone=document.getElementById("phone").value;
+let service=document.getElementById("service").value;
+let date=document.getElementById("date").value;
+let address=document.getElementById("address").value;
+
+if(!name || !phone || !service || !date || !address){
+alert("Please fill all fields");
+return;
+}
+
+let msg = `New Booking:%0AName: ${name}%0APhone: ${phone}%0AService: ${service}%0ADate: ${date}%0AAddress: ${address}`;
+
+window.open(`https://wa.me/919876543210?text=${msg}`, "_blank");
+}
+</script>
+
+</body>
+</html>
