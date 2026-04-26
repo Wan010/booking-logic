@@ -6,58 +6,126 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Prāṇa — Women's Luxury Massage · Goa</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
 
 <style>
-body{
-  margin:0;
-  font-family:'Jost',sans-serif;
-  background:#0E0C0A;
-  color:#F5F0EA;
+:root{
+  --bg:#0E0C0A;
+  --card:#1C1916;
+  --gold:#C9A96E;
+  --gold-light:#E8D5AE;
+  --text:#F5F0EA;
+  --dim:#9A8A78;
+  --border:rgba(201,169,110,0.25);
 }
-.container{max-width:900px;margin:auto;padding:40px 20px;}
-h1{font-family:'Playfair Display',serif;font-size:2.5rem;}
-.gold{color:#C9A96E;}
+
+*{box-sizing:border-box;margin:0;padding:0;}
+
+body{
+  font-family:'Jost',sans-serif;
+  background:var(--bg);
+  color:var(--text);
+}
+
+.container{
+  max-width:900px;
+  margin:auto;
+  padding:40px 20px;
+}
+
+.center{text-align:center;}
+
+h1{
+  font-family:'Playfair Display',serif;
+  font-size:clamp(2rem,4vw,3rem);
+  margin-bottom:10px;
+}
+
+.gold{color:var(--gold);}
+
+.tag{
+  font-size:0.7rem;
+  letter-spacing:2px;
+  color:var(--gold);
+  margin-bottom:10px;
+}
+
+.small{
+  font-size:0.75rem;
+  color:var(--dim);
+}
 
 .card{
-  border:1px solid rgba(201,169,110,0.3);
+  margin-top:30px;
+  border:1px solid var(--border);
+  background:rgba(255,255,255,0.02);
   padding:30px;
   border-radius:6px;
-  background:rgba(255,255,255,0.02);
+}
+
+hr{
+  border:none;
+  border-top:1px solid var(--border);
+  margin:20px 0;
+}
+
+label{
+  font-size:0.75rem;
+  color:var(--gold);
+  display:block;
+  margin-bottom:4px;
 }
 
 input,select,textarea{
   width:100%;
   padding:12px;
-  margin-top:6px;
-  margin-bottom:18px;
-  background:#1C1916;
-  border:1px solid rgba(201,169,110,0.2);
+  border:1px solid var(--border);
+  background:var(--card);
   color:white;
+  margin-bottom:18px;
+  border-radius:4px;
+}
+
+input:focus,select:focus,textarea:focus{
+  outline:none;
+  border-color:var(--gold);
+}
+
+textarea{
+  resize:vertical;
+  min-height:80px;
 }
 
 button{
   width:100%;
   padding:15px;
-  background:#C9A96E;
+  background:var(--gold);
+  color:black;
   border:none;
   font-weight:500;
   letter-spacing:2px;
   cursor:pointer;
+  border-radius:4px;
+  transition:0.3s;
 }
 
-button:hover{background:#E8D5AE;}
+button:hover{background:var(--gold-light);}
+button:disabled{opacity:0.6;cursor:not-allowed;}
 
-.small{font-size:0.75rem;color:#9A8A78;}
-
-.tag{
-  font-size:0.7rem;
-  color:#C9A96E;
-  letter-spacing:2px;
-  margin-bottom:10px;
+.terms{
+  display:flex;
+  gap:10px;
+  font-size:0.75rem;
+  color:var(--dim);
+  margin-bottom:20px;
 }
 
-.center{text-align:center;}
+.success{
+  margin-top:15px;
+  font-size:0.8rem;
+  color:var(--gold);
+  display:none;
+}
 
 </style>
 </head>
@@ -72,13 +140,10 @@ button:hover{background:#E8D5AE;}
   <p class="small">Luxury at-home massage for women across Goa</p>
 </div>
 
-<br>
-
 <div class="card">
 
 <h2>₹6,000 — Premium Session</h2>
 <p class="small">90 min · Female therapist · Pay after</p>
-
 <p class="small">⚠ Only 6 slots available daily · High demand</p>
 
 <hr>
@@ -89,7 +154,7 @@ button:hover{background:#E8D5AE;}
 <input type="text" id="name" required>
 
 <label>Phone</label>
-<input type="tel" id="phone" required pattern="[0-9]{10}">
+<input type="tel" id="phone" required pattern="[0-9]{10}" placeholder="10-digit number">
 
 <label>Massage Type</label>
 <select id="style" required>
@@ -104,6 +169,7 @@ button:hover{background:#E8D5AE;}
 
 <label>Time</label>
 <select id="time" required>
+<option value="">Select</option>
 <option>10 AM</option>
 <option>2 PM</option>
 <option>6 PM</option>
@@ -115,49 +181,68 @@ button:hover{background:#E8D5AE;}
 <label>Notes</label>
 <textarea id="notes"></textarea>
 
-<label style="display:flex;gap:10px;font-size:0.75rem;">
+<div class="terms">
 <input type="checkbox" id="terms">
 <span>
-I confirm I am a woman booking this service.  
-This is strictly wellness service.  
-Any inappropriate behavior leads to cancellation.
+I confirm I am a woman booking this service. This is strictly a wellness service.
+Any inappropriate behavior will lead to immediate cancellation.
 </span>
-</label>
+</div>
 
-<button type="button" onclick="bookNow()">Reserve — ₹6000</button>
+<button type="submit" id="submitBtn">Reserve — ₹6000</button>
 
 </form>
 
-<p class="small center">Trusted by 300+ women · 4.9★ rating</p>
+<div class="success" id="successMsg">
+✦ Redirecting to WhatsApp...
+</div>
+
+<p class="small center" style="margin-top:20px;">
+Trusted by 300+ women · 4.9★ rating
+</p>
 
 </div>
 
 </div>
 
 <script>
+const form = document.getElementById("bookingForm");
+const btn = document.getElementById("submitBtn");
+const successMsg = document.getElementById("successMsg");
 
-function bookNow(){
+form.addEventListener("submit", function(e){
+  e.preventDefault();
 
-  const name = document.getElementById('name').value;
-  const phone = document.getElementById('phone').value;
-  const style = document.getElementById('style').value;
-  const date = document.getElementById('date').value;
-  const time = document.getElementById('time').value;
-  const address = document.getElementById('address').value;
-  const notes = document.getElementById('notes').value;
-  const terms = document.getElementById('terms').checked;
+  const name = document.getElementById("name").value.trim();
+  const phone = document.getElementById("phone").value.trim();
+  const style = document.getElementById("style").value;
+  const date = document.getElementById("date").value;
+  const time = document.getElementById("time").value;
+  const address = document.getElementById("address").value.trim();
+  const notes = document.getElementById("notes").value.trim();
+  const terms = document.getElementById("terms").checked;
 
   if(!name || !phone || !style || !date || !time || !address){
-    alert("Fill all required fields");
+    alert("Please fill all required fields.");
+    return;
+  }
+
+  if(!/^[0-9]{10}$/.test(phone)){
+    alert("Enter valid 10-digit phone number.");
     return;
   }
 
   if(!terms){
-    alert("Accept terms first");
+    alert("Please accept terms & conditions.");
     return;
   }
 
-  const msg = `🌿 Prāṇa Booking
+  btn.disabled = true;
+  btn.textContent = "Processing...";
+
+  successMsg.style.display = "block";
+
+  const message = `🌿 Prāṇa Booking
 
 Name: ${name}
 Phone: ${phone}
@@ -169,12 +254,13 @@ Notes: ${notes}
 
 ₹6000 Premium Session`;
 
-  const url = "https://wa.me/919876543210?text=" + encodeURIComponent(msg);
+  const url = "https://wa.me/919876543210?text=" + encodeURIComponent(message);
 
-  window.open(url, "_blank");
-
-}
-
+  setTimeout(()=>{
+    window.open(url, "_blank");
+    btn.textContent = "Reserved ✓";
+  }, 800);
+});
 </script>
 
 </body>
